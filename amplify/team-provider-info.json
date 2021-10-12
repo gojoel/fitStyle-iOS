@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fitstyle-dev-210803-authRole",
+      "UnauthRoleArn": "arn:aws:iam::879969738468:role/amplify-fitstyle-dev-210803-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::879969738468:role/amplify-fitstyle-dev-210803-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-fitstyle-dev-210803-deployment",
+      "UnauthRoleName": "amplify-fitstyle-dev-210803-unauthRole",
+      "StackName": "amplify-fitstyle-dev-210803",
+      "StackId": "arn:aws:cloudformation:us-east-2:879969738468:stack/amplify-fitstyle-dev-210803/8c953fd0-91bd-11eb-8a0d-0aee4f45e49a",
+      "AmplifyAppId": "dbjef3qojelc"
+    },
+    "categories": {
+      "auth": {
+        "fitstyle2801560a": {
+          "userPoolId": "us-east-2_2gYAGJQI0",
+          "userPoolName": "fitstyle dev",
+          "webClientId": "cpftrfvp3i1s5smhl58aecibh",
+          "nativeClientId": "cpftrfvp3i1s5smhl58aecibh",
+          "identityPoolId": "us-east-2:6666840b-923f-4c9e-8656-ecf89876d31a",
+          "identityPoolName": "fitstyle dev",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::879969738468:role/Cognito_fitstyledevAuth_Role",
+          "authRoleName": "Cognito_fitstyledevAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::879969738468:role/Cognito_fitstyledevUnauth_Role",
+          "unauthRoleName": "Cognito_fitstyledevUnauth_Role"
+        }
+      },
+      "storage": {
+        "fitstylec14beb30": {
+          "bucketName": "foldedai-fitstyle-dev",
+          "region": "us-west-2"
+        }
+      }
+    }
+  }
+}
