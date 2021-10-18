@@ -42,8 +42,6 @@ class CacheManager {
     }
     
     func retrieveStyledImages() -> [StyledImage] {
-        let styledImages = styledCache.all()
-        print("Cached styled images: \(styledImages)")
         return styledCache.all()
     }
     

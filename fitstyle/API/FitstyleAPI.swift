@@ -64,13 +64,6 @@ enum FitstyleAPI {
     static func fetchStyledImages() -> AnyPublisher<[StyledImage], Error> {
         return Just(cacheManager.retrieveStyledImages())
             .mapError({ $0 as Error })
-            .map({ (images) -> [StyledImage] in
-                let sortedImages = images.sorted(by: {
-                    $0.lastUpdated.compare($1.lastUpdated) == .orderedDescending
-                })
-                
-                return sortedImages
-            })
             .eraseToAnyPublisher()
     }
     
@@ -97,8 +90,12 @@ enum FitstyleAPI {
     static func styleTransfer(contentImage: Data, styleImage: Data?, styleImageId: String?) -> AnyPublisher<StyleTransferResponse, Error> {
         return fetchUserId()
             .flatMap { (userId) -> AnyPublisher<StyleTransferResponse, Error> in
-                let params: [String: Any] = ["style_id": styleImageId ?? "", "user_id": userId]
-                return styleTransferRequest(contentImage: contentImage, styleImage: nil, params: params)
+                var params: [String: Any] = ["user_id": userId]
+                if let id = styleImageId {
+                    params["style_id"] = id
+                }
+                                
+                return styleTransferRequest(contentImage: contentImage, styleImage: styleImage, params: params)
                     .eraseToAnyPublisher()
             }.eraseToAnyPublisher()
     }
@@ -121,11 +118,11 @@ enum FitstyleAPI {
                 
                 // add custom style image if provided
                 if let styleImage = styleImage {
-                    multiPart.append(styleImage, withName: "custom_style", fileName: "custom_style.png", mimeType: "image/png")
+                    multiPart.append(styleImage, withName: "custom_style", fileName: "custom_style.png", mimeType: "image/jpeg")
                 }
                 
                 // add photo
-                multiPart.append(contentImage, withName: "content", fileName: "content.png", mimeType: "image/png")
+                multiPart.append(contentImage, withName: "content", fileName: "content.png", mimeType: "image/jpeg")
             }, to: url, method: .post)
             .responseDecodable(of: StyleTransferResponse.self) { response in
                 switch response.result {
@@ -177,9 +174,7 @@ enum FitstyleAPI {
         _ = AF.request("\(baseUrlString)/style_transfer/cancel/\(jobId)", method: .post)
     }
     
-    
     private static func generateImageUrlLegacy(key: String) -> AnyPublisher<URL, Error> {
-        
         return Future { promise in
             do {
                 let plugin = try Amplify.Storage.getPlugin(for: "awsS3StoragePlugin") as! AWSS3StoragePlugin

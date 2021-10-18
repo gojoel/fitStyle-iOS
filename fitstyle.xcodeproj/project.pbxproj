@@ -28,7 +28,6 @@
 		3CA77C662712AB9A00B23D93 /* StyledImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA77C652712AB9A00B23D93 /* StyledImageViewModel.swift */; };
 		3CA77C692712ABD800B23D93 /* StyledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA77C682712ABD800B23D93 /* StyledImage.swift */; };
 		3CB3278B271C904000CA5F50 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB3278A271C904000CA5F50 /* ErrorView.swift */; };
-		3CB32795271CD42300CA5F50 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB32794271CD42300CA5F50 /* SkeletonView */; };
 		3CC1C54127154661008B1BE0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1C54027154661008B1BE0 /* Error.swift */; };
 		3CC1C54827160796008B1BE0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1C54727160796008B1BE0 /* Cache.swift */; };
 		3CC1C54B2716136F008B1BE0 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1C54A2716136F008B1BE0 /* Style.swift */; };
@@ -113,7 +112,6 @@
 				3CD0DC11270FBC5D001E9441 /* Alamofire in Frameworks */,
 				3C7C431D270C1351000D0702 /* Amplify in Frameworks */,
 				3C7C431F270C1351000D0702 /* AWSCognitoAuthPlugin in Frameworks */,
-				3CB32795271CD42300CA5F50 /* SkeletonView in Frameworks */,
 				3C7C4321270C1351000D0702 /* AWSS3StoragePlugin in Frameworks */,
 				3CD2BDAF270E1CC3005741F8 /* Kingfisher in Frameworks */,
 				3CD0DBFB270EB133001E9441 /* Lottie in Frameworks */,
@@ -348,7 +346,6 @@
 				3CD2BDAE270E1CC3005741F8 /* Kingfisher */,
 				3CD0DBFA270EB133001E9441 /* Lottie */,
 				3CD0DC10270FBC5D001E9441 /* Alamofire */,
-				3CB32794271CD42300CA5F50 /* SkeletonView */,
 			);
 			productName = fitstyle;
 			productReference = 3CE486522702E465007BDD06 /* fitstyle.app */;
@@ -382,7 +379,6 @@
 				3CD2BDAD270E1CC3005741F8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3CD0DBF9270EB133001E9441 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				3CD0DC0F270FBC5D001E9441 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				3CB32793271CD42300CA5F50 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 3CE486532702E465007BDD06 /* Products */;
 			projectDirPath = "";
@@ -645,14 +641,6 @@
 				minimumVersion = 1.14.0;
 			};
 		};
-		3CB32793271CD42300CA5F50 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.25.1;
-			};
-		};
 		3CD0DBF9270EB133001E9441 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -699,11 +687,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3C7C431B270C1351000D0702 /* XCRemoteSwiftPackageReference "amplify-ios" */;
 			productName = AWSAPIPlugin;
-		};
-		3CB32794271CD42300CA5F50 /* SkeletonView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB32793271CD42300CA5F50 /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
 		};
 		3CD0DBFA270EB133001E9441 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -29,7 +29,7 @@ final class StyleTransferViewModel: ObservableObject {
 
             let manager = PHImageManager.default()
             manager.requestImage(for: photo, targetSize: PHImageManagerMaximumSize, contentMode:PHImageContentMode.default, options: requestImageOption) { (image: UIImage?, _) in
-                if let image = image, let imageData = image.jpegData(compressionQuality: 1.0) {
+                if let image = image, let imageData = image.jpegData(compressionQuality: 0.7) {
                     promise(.success(imageData))
                     return
                 }

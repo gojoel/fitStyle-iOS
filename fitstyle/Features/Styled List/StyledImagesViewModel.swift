@@ -33,6 +33,13 @@ final class StyledImagesViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .collect()
+            .map({ (images) -> [StyledImage] in
+                let sortedImages = images.sorted(by: {
+                    $0.lastUpdated.compare($1.lastUpdated) == .orderedDescending
+                })
+                
+                return sortedImages
+            })
             .eraseToAnyPublisher()
             .receive(on: RunLoop.main)
             .sink { (completion) in
