@@ -10,11 +10,15 @@ import Amplify
 import AWSCognitoAuthPlugin
 import AWSS3StoragePlugin
 import AWSPluginsCore
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // initialize Firebase
+        FirebaseApp.configure()
+
         do {
             Amplify.Logging.logLevel = .info
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
