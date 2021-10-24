@@ -10,7 +10,6 @@ import SwiftUI
 import Amplify
 import Kingfisher
 import PhotosUI
-import SkeletonView
 
 struct StyleListView: View {
     
@@ -138,6 +137,7 @@ struct StyleView: View {
         let imageResource = ImageResource(downloadURL: url, cacheKey: style.key)
         return KFImage
             .resource(imageResource)
+            .placeholder { CardPlaceholderView() }
             .diskCacheExpiration(.days(Constants.Config.DEFAULT_DISK_EXPIRATION_DAYS))
             .resizable()
             .aspectRatio(1, contentMode: .fit)

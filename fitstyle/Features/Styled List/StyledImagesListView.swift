@@ -139,6 +139,7 @@ struct StyledView: View {
         
         return KFImage
             .resource(imageResource)
+            .placeholder { CardPlaceholderView() }
             .diskCacheExpiration(.days(Constants.Config.DEFAULT_DISK_EXPIRATION_DAYS))
             .resizable()
             .aspectRatio(1, contentMode: .fit)
