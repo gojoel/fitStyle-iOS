@@ -162,6 +162,10 @@ extension Cache where Key: Codable, Value: Codable {
         )
 
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
+        if !fileManager.fileExists(atPath: fileURL.path) {
+            return Cache<Key, Value>()
+        }
+        
         let data = try Data(contentsOf: fileURL)
         
         let decoder = JSONDecoder()

@@ -21,6 +21,7 @@
 		3C7C4339270D0C1B000D0702 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C4337270D0C1B000D0702 /* amplifyconfiguration.json */; };
 		3C7C433A270D0C1B000D0702 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C4338270D0C1B000D0702 /* awsconfiguration.json */; };
 		3C7C433E270D16BE000D0702 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C433D270D16BE000D0702 /* Constants.swift */; };
+		3C87433B271E806100EB6706 /* CardPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87433A271E806100EB6706 /* CardPlaceholderView.swift */; };
 		3CA77C4F2710F0A700B23D93 /* StyleTransferResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA77C4E2710F0A700B23D93 /* StyleTransferResultResponse.swift */; };
 		3CA77C5227112CC800B23D93 /* error-cone.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CA77C5127112CC800B23D93 /* error-cone.json */; };
 		3CA77C5727113FB000B23D93 /* StyleTransferErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA77C5627113FB000B23D93 /* StyleTransferErrorView.swift */; };
@@ -68,6 +69,7 @@
 		3C7C4337270D0C1B000D0702 /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = SOURCE_ROOT; };
 		3C7C4338270D0C1B000D0702 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
 		3C7C433D270D16BE000D0702 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3C87433A271E806100EB6706 /* CardPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPlaceholderView.swift; sourceTree = "<group>"; };
 		3CA77C4E2710F0A700B23D93 /* StyleTransferResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTransferResultResponse.swift; sourceTree = "<group>"; };
 		3CA77C5127112CC800B23D93 /* error-cone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "error-cone.json"; sourceTree = "<group>"; };
 		3CA77C5627113FB000B23D93 /* StyleTransferErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTransferErrorView.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				3CD2BD9F270D6B03005741F8 /* Spinner.swift */,
 				3CC1C563271BCE7E008B1BE0 /* PhotoPicker.swift */,
 				3CB3278A271C904000CA5F50 /* ErrorView.swift */,
+				3C87433A271E806100EB6706 /* CardPlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				3CD0DC15270FC05C001E9441 /* StyleTransferResponse.swift in Sources */,
 				3CCD1674270AB2C500F0ED95 /* StyleListViewModel.swift in Sources */,
 				3C7C4319270C016D000D0702 /* Agent.swift in Sources */,
+				3C87433B271E806100EB6706 /* CardPlaceholderView.swift in Sources */,
 				3CD2BDA0270D6B03005741F8 /* Spinner.swift in Sources */,
 				3CD0DC0C270ECF5B001E9441 /* StyleTransferViewModel.swift in Sources */,
 				3CCD1677270AB2D000F0ED95 /* StyleListView.swift in Sources */,
