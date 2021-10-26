@@ -45,7 +45,7 @@ class CacheManager {
         return styledCache.all()
     }
     
-    func saveStledImages() {
+    func saveStyledImages() {
         do {
             try styledCache.saveToDisk(withName: STYLED_IMAGE_CACHE_NAME)
         } catch {

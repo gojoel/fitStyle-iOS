@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "FD104BEE",
+      "localizations" : [
+        {
+          "description" : "Removes the watermark from a styled image",
+          "displayName" : "Watermark Removal",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "ai.folded.fitstyle.iap.watermark_removal",
+      "referenceName" : "Watermark Removal",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

@@ -161,7 +161,7 @@ enum FitstyleAPI {
                         
                         // save to memory and disk
                         self.cacheManager.cache(styledImage: styledImage)
-                        self.cacheManager.saveStledImages()
+                        self.cacheManager.saveStyledImages()
                         
                         return styledImage
                     }
@@ -206,6 +206,40 @@ enum FitstyleAPI {
                 promise(.failure(error))
             }
         }.eraseToAnyPublisher()
+    }
+    
+    static func removeWatermark(styledImage: StyledImage) -> AnyPublisher<Bool, Error> {
+        fetchUserId()
+            .flatMap { (userId) -> AnyPublisher<Bool, Error> in
+                return Future { promise in
+                    let parameters = ["userId": userId, "requestId": styledImage.requestId()]
+                    
+                    AF.request("\(baseUrlString)/remove_watermark", method: .post, parameters: parameters)
+                        .responseString { (response) in
+                            guard let httpResponse = response.response else {
+                                promise(.failure(FitstyleError.unknownError))
+                                return
+                            }
+                            
+                            if httpResponse.statusCode != 200 {
+                                promise(.failure(FitstyleError.unknownError))
+                            } else {
+                                promise(.success(true))
+                            }
+                        }
+                }.eraseToAnyPublisher()
+                
+            }.mapError({ $0 as Error })
+            .eraseToAnyPublisher()
+    }
+    
+    static func savePurchasedImage(_ styledImage: StyledImage) -> StyledImage {
+        let updatedStyledImage = StyledImage(id: styledImage.id, key: styledImage.key, purchased: true, url: styledImage.url, lastUpdated: Date())
+        
+        cacheManager.cache(styledImage: updatedStyledImage)
+        cacheManager.saveStyledImages()
+        
+        return updatedStyledImage
     }
 }
 

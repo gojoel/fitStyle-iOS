@@ -17,11 +17,17 @@ struct StyledImageView: View {
     
     @EnvironmentObject var settings: StyleTransferSettings
     
+    @EnvironmentObject private var store: Store
+    
     @StateObject var viewModel: StyledImageViewModel
     
     @Binding var homeViewActive : Bool
     
     @Binding var styleListActive : Bool
+    
+    @State private var showPurchaseErrorAlert = false
+    
+    @State var purchaseError: Error? = nil
     
     var navSourceStyleTransfer = true
         
@@ -37,17 +43,31 @@ struct StyledImageView: View {
             }) {
                 Constants.Theme.backButtonImage
             })
+            .alert(isPresented: $showPurchaseErrorAlert) {
+                let message = self.purchaseError?.localizedDescription ?? ""
+                
+                return Alert(title: Text("Failed to remove watermark."),
+                      message: Text(message),
+                      dismissButton: .cancel(Text("OK"))
+                )
+            }
             .navigationTitle("Styled Image")
             .onAppear {
                 self.viewModel.styledImage = settings.selectedStyledImage
                 self.viewModel.fetchImageUrl()
+                
+                if let styledImage = self.viewModel.styledImage, !styledImage.purchased, self.store.shouldFetchProducts() {
+                    self.store.fetchProducts { _ in }
+                }
             }
     }
     
     private var content: some View {
         switch viewModel.state {
         case .loading:
-            return Spinner(isAnimating: true, style: .large).eraseToAnyView()
+            return loadingView().eraseToAnyView()
+        case .purchasing:
+            return loadingView(purchasing: true).eraseToAnyView()
         case .loaded(let image):
             return imageView(image: image).eraseToAnyView()
         case .error(let error):
@@ -57,7 +77,7 @@ struct StyledImageView: View {
     
     private func imageView(image: KFCrossPlatformImage) -> some View {
         return GeometryReader { geometry in
-            VStack {
+            VStack() {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(0.8, contentMode: .fit)
@@ -65,13 +85,58 @@ struct StyledImageView: View {
                     .cornerRadius(Constants.Theme.cornerRadius)
                     .shadow(color: Color.primary.opacity(0.3), radius: 1)
 
+                Spacer()
+                    .frame(height: 25)
+
+                shareButton
+                
+                if let purchased = viewModel.styledImage?.purchased, !purchased {
+                    purchaseButton
+                }
+                
+                createButton
+            }
+            .frame(maxWidth: geometry.size.width)
+            .padding(20)
+        }
+    }
+    
+    private func loadingView(purchasing: Bool = false) -> some View {
+        return GeometryReader { geometry in
+            VStack {
+                ZStack(alignment: .center) {
+                    CardPlaceholderView()
+                        .aspectRatio(0.8, contentMode: .fit)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    
+                    VStack(alignment: .center) {
+                        Spinner(isAnimating: true, style: .large)
+                        
+                        if purchasing {
+                            Text("Removing watermark...")
+                                .foregroundColor(Constants.Theme.mainTextColor)
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .font(.system(size: 16))
+                        }
+                    }
+                }
+                .frame(minWidth: 0, maxWidth: geometry.size.width)
+                .aspectRatio(0.8, contentMode: .fit)
 
                 Spacer()
                     .frame(height: 25)
 
                 shareButton
-                purchaseButton
+                    .disabled(true)
+                
+                if !purchasing {
+                    purchaseButton
+                        .disabled(true)
+                }
+                
                 createButton
+                    .disabled(true)
             }
             .frame(maxWidth: geometry.size.width)
             .padding(20)
@@ -99,7 +164,15 @@ struct StyledImageView: View {
 
     var purchaseButton: some View {
         return Button(action: {
-
+            store.purchaseProduct { (result) in
+                switch result {
+                case .success( _):
+                        viewModel.setImagePurchased()
+                    case .failure(let error):
+                        self.purchaseError = error
+                        self.showPurchaseErrorAlert.toggle()
+                }
+            }
         }) {
             HStack() {
                 Image(systemName: "dollarsign.circle")
