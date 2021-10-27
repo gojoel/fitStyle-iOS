@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StyledImage: Codable, Identifiable {
+struct StyledImage: Codable, Identifiable, Hashable {
     var id = UUID()
     var key: String
     var purchased: Bool = false

@@ -91,7 +91,7 @@ struct StyleListView: View {
                         UploadStyleView(size: geometry.size.width)
                     }
 
-                    ForEach(styles) { style in
+                    ForEach(styles, id: \.self) { style in
                         StyleView(style: style, size: geometry.size.width)
                             .onTapGesture {
                                 self.settings.selectedStyle = style

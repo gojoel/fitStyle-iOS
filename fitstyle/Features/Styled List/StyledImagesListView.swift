@@ -66,7 +66,7 @@ struct StyledImagesListView: View {
         return GeometryReader { geometry in
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: gridLayout, alignment: .center, spacing: StyledImagesListView.gridViewSpacing) {
-                    ForEach(images) { image in
+                    ForEach(images, id: \.self) { image in
                         StyledView(image: image, size: geometry.size.width)
                             .onTapGesture {
                                 self.settings.selectedStyledImage = image
