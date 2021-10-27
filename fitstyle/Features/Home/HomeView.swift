@@ -66,7 +66,7 @@ struct HomeView: View {
                 .buttonStyle(Constants.Theme.StyledButton())
                 
                 NavigationLink(
-                    destination: Text("placeholder")
+                    destination: SettingsView(viewModel: SettingsViewModel())
                 ) {
                     HStack() {
                         Image(systemName: "gearshape")
