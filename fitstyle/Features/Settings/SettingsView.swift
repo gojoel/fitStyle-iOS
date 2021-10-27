@@ -12,6 +12,8 @@ import MessageUI
 
 struct SettingsView: View {
     
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+
     @ObservedObject var viewModel: SettingsViewModel
 
     @State var userId: String = ""
@@ -66,6 +68,8 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("Settings")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Constants.Theme.createBackButton(presentation: self.presentationMode))
         .sheet(isPresented: $isShowingMailView) {
             MailView(isShowing: self.$isShowingMailView, result: self.$result)
         }
