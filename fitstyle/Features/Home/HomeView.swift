@@ -80,7 +80,6 @@ struct HomeView: View {
                             .frame(minWidth: 0, maxWidth: geometry.size.width * buttonWidthMultiplier)
                     }
                 }
-                .isDetailLink(false)
                 .buttonStyle(Constants.Theme.StyledButton())
                 
             }.frame(
