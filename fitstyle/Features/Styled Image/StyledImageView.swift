@@ -164,6 +164,11 @@ struct StyledImageView: View {
 
     var purchaseButton: some View {
         return Button(action: {
+            if store.shouldFetchProducts() {
+                purchaseError = Store.StoreError.productRequestFailed
+                return
+            }
+            
             store.purchaseProduct { (result) in
                 switch result {
                 case .success( _):
