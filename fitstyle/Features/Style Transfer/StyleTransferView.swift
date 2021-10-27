@@ -102,8 +102,9 @@ struct StyleTransferView: View {
         }
         
         return Image(uiImage: getAssetThumbnail(asset: photo, size: imageSize))
-               .frame(maxWidth: imageSize, maxHeight: imageSize)
-            .scaledToFit()
+            .resizable()
+            .aspectRatio(1, contentMode: .fit)
+            .frame(minWidth: 0, maxWidth: imageSize)
             .cornerRadius(Constants.Theme.cornerRadius)
             .offset(x: -(halfImageSize / 2), y: -(halfImageSize / 2))
             .eraseToAnyView()
@@ -115,8 +116,9 @@ struct StyleTransferView: View {
         
         if let customStylePhoto = settings.customStylePhoto {
             return Image(uiImage: getAssetThumbnail(asset: customStylePhoto, size: imageSize))
-                .frame(maxWidth: imageSize, maxHeight: imageSize)
+                .resizable()
                 .scaledToFit()
+                .frame(maxWidth: imageSize, maxHeight: imageSize)
                 .cornerRadius(Constants.Theme.cornerRadius)
                 .offset(x: halfImageSize / 2, y: halfImageSize / 2)
                 .eraseToAnyView()
@@ -127,8 +129,9 @@ struct StyleTransferView: View {
             return KFImage
                 .resource(imageResource)
                 .diskCacheExpiration(.days(Constants.Config.DEFAULT_DISK_EXPIRATION_DAYS))
-                .frame(maxWidth: imageSize, maxHeight: imageSize)
-                .scaledToFit()
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
+                .frame(minWidth: 0, maxWidth: imageSize)
                 .cornerRadius(Constants.Theme.cornerRadius)
                 .shadow(color: Color.primary.opacity(0.3), radius: 1)
                 .offset(x: halfImageSize / 2, y: halfImageSize / 2)
