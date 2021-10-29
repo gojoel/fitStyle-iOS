@@ -142,7 +142,7 @@ struct StyledView: View {
             .placeholder { CardPlaceholderView() }
             .diskCacheExpiration(.days(Constants.Config.DEFAULT_DISK_EXPIRATION_DAYS))
             .resizable()
-            .aspectRatio(1, contentMode: .fit)
+            .aspectRatio(1, contentMode: .fill)
             .frame(minWidth: 0, maxWidth: size - StyleListView.gridViewSpacing)
             .cornerRadius(Constants.Theme.cornerRadius)
             .shadow(color: Color.primary.opacity(0.3), radius: 1)
