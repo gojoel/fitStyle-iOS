@@ -157,7 +157,7 @@ enum FitstyleAPI {
                 return FitstyleAPI.fetchUserId()
                     .map { (userId) -> StyledImage in
                         let key = Constants.Aws.buildStyledKey(userId: userId, requestId: response.requestId!)
-                        let styledImage = StyledImage(key: key)
+                        let styledImage = StyledImage(key: key, lastUpdated: Date())
                         
                         // save to memory and disk
                         self.cacheManager.cache(styledImage: styledImage)

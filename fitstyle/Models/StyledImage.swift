@@ -12,15 +12,17 @@ struct StyledImage: Codable, Identifiable, Hashable {
     var key: String
     var purchased: Bool = false
     var url: URL?
-    var lastUpdated = Date()
-    
+    var lastUpdated: Date 
+
     func requestId() -> String {
         let components = key.components(separatedBy: "/")
         return components[components.count - 2]        
     }
 
     enum CodingKeys: String, CodingKey {
-        case key = "key"
-        case purchased = "purchased"
+        case id
+        case key
+        case purchased
+        case lastUpdated
     }
 }

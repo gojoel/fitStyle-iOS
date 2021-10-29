@@ -27,7 +27,7 @@ final class StyledImagesViewModel: ObservableObject {
             .flatMap { (item) -> AnyPublisher<StyledImage, Error> in
                 return FitstyleAPI.generateStyledImageUrl(key: item.key)
                     .map { (url) -> StyledImage in
-                        let styledImage = StyledImage(key: item.key, purchased: item.purchased, url: url)
+                        let styledImage = StyledImage(key: item.key, purchased: item.purchased, url: url, lastUpdated: item.lastUpdated)
                         return styledImage
                     }
                     .eraseToAnyPublisher()

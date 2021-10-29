@@ -148,7 +148,10 @@ extension Cache where Key: Codable, Value: Codable {
         )
 
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
-        let data = try JSONEncoder().encode(self)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .customISO8601
+        
+        let data = try encoder.encode(self)
         try data.write(to: fileURL)
     }
     
@@ -169,7 +172,7 @@ extension Cache where Key: Codable, Value: Codable {
         let data = try Data(contentsOf: fileURL)
         
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .customISO8601
         
         return try decoder.decode(Cache.self, from: data)
     }
