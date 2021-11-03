@@ -10,6 +10,7 @@ import SwiftUI
 import PhotosUI
 import Kingfisher
 import Combine
+import FirebaseAnalytics
 
 struct StyledImageView: View {
     
@@ -105,14 +106,14 @@ struct StyledImageView: View {
         return GeometryReader { geometry in
             VStack {
                 ZStack(alignment: .center) {
-                    CardPlaceholderView()
+                    CardPlaceholderView(showSpinner: !purchasing, style: .large)
                         .aspectRatio(0.8, contentMode: .fit)
                         .frame(minWidth: 0, maxWidth: .infinity)
                     
                     VStack(alignment: .center) {
-                        Spinner(isAnimating: true, style: .large)
-                        
                         if purchasing {
+                            Spinner(isAnimating: true, style: .large)
+
                             Text("Removing watermark...")
                                 .foregroundColor(Constants.Theme.mainTextColor)
                                 .fontWeight(.semibold)
@@ -163,6 +164,8 @@ struct StyledImageView: View {
     }
 
     var purchaseButton: some View {
+        Analytics.logEvent("tapped_purchase", parameters: nil)
+        
         return Button(action: {
             if store.shouldFetchProducts() {
                 purchaseError = Store.StoreError.productRequestFailed

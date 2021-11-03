@@ -117,8 +117,8 @@ struct StyleTransferView: View {
         if let customStylePhoto = settings.customStylePhoto {
             return Image(uiImage: getAssetThumbnail(asset: customStylePhoto, size: imageSize))
                 .resizable()
-                .scaledToFit()
-                .frame(maxWidth: imageSize, maxHeight: imageSize)
+                .aspectRatio(1, contentMode: .fit)
+                .frame(minWidth: 0, maxWidth: imageSize)
                 .cornerRadius(Constants.Theme.cornerRadius)
                 .offset(x: halfImageSize / 2, y: halfImageSize / 2)
                 .eraseToAnyView()
@@ -150,7 +150,7 @@ struct StyleTransferView: View {
                     .fontWeight(.bold)
                     .font(.largeTitle)
                 
-                Text("Applying the style to your photo. This will only take a few seconds...")
+                Text("Applying the style to your photo. This will only take a couple of seconds.")
                     .foregroundColor(Constants.Theme.mainTextColor)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
@@ -169,7 +169,7 @@ struct StyleTransferView: View {
                 Spacer()
                     .frame(height: 50)
                 
-                ProgressView("Please wait")
+                ProgressView("Please wait...")
             }
             .padding(16.0)
             .frame(maxWidth: geometry.size.width)

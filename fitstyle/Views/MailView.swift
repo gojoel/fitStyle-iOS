@@ -45,7 +45,12 @@ struct MailView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
+        let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+
+        vc.setSubject("\(appName ?? "") App Feedback")
+        vc.setToRecipients(["foldedai@gmail.com"])
         vc.mailComposeDelegate = context.coordinator
+        
         return vc
     }
 

@@ -11,6 +11,8 @@ import Alamofire
 import PhotosUI
 
 final class StyleTransferViewModel: ObservableObject {
+    
+    private let targetSize: CGSize = CGSize(width: 1500, height: 1500)
                 
     let state = PassthroughSubject<State, Never>()
 
@@ -25,11 +27,14 @@ final class StyleTransferViewModel: ObservableObject {
     private func getPhotoData(photo: PHAsset) -> AnyPublisher<Data, Error> {
         return Future { promise in
             let requestImageOption = PHImageRequestOptions()
+            requestImageOption.resizeMode = .exact
             requestImageOption.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
 
             let manager = PHImageManager.default()
-            manager.requestImage(for: photo, targetSize: PHImageManagerMaximumSize, contentMode:PHImageContentMode.default, options: requestImageOption) { (image: UIImage?, _) in
-                if let image = image, let imageData = image.jpegData(compressionQuality: 0.7) {
+            let useTargetSize = photo.pixelWidth > Int(self.targetSize.width) || photo.pixelHeight > Int(self.targetSize.height)
+            manager.requestImage(for: photo, targetSize: useTargetSize ? self.targetSize : PHImageManagerMaximumSize, contentMode:PHImageContentMode.default, options: requestImageOption) { (image: UIImage?, _) in
+
+                if let image = image, let imageData = image.jpegData(compressionQuality: 0.5) {
                     promise(.success(imageData))
                     return
                 }

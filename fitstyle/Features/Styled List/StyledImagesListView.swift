@@ -139,10 +139,10 @@ struct StyledView: View {
         
         return KFImage
             .resource(imageResource)
-            .placeholder { CardPlaceholderView() }
+            .placeholder { CardPlaceholderView(showSpinner: true) }
             .diskCacheExpiration(.days(Constants.Config.DEFAULT_DISK_EXPIRATION_DAYS))
             .resizable()
-            .aspectRatio(1, contentMode: .fill)
+            .aspectRatio(1, contentMode: .fit)
             .frame(minWidth: 0, maxWidth: size - StyleListView.gridViewSpacing)
             .cornerRadius(Constants.Theme.cornerRadius)
             .shadow(color: Color.primary.opacity(0.3), radius: 1)
