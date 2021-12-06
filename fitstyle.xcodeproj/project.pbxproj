@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2AE60D69ED76CA0347E39EB0 /* Pods_fitstyle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEAD25E461CA4E4CCC543E6 /* Pods_fitstyle.framework */; };
+		3C2EC848275091B8008E4669 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC847275091B8008E4669 /* Page.swift */; };
+		3C2EC84B275091E1008E4669 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC84A275091E1008E4669 /* GradientView.swift */; };
+		3C2EC84E2750969C008E4669 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC84D2750969C008E4669 /* TutorialView.swift */; };
+		3C2EC851275097F7008E4669 /* TutorialTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC850275097F7008E4669 /* TutorialTabView.swift */; };
+		3C2EC85527509A18008E4669 /* TutorialDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC85427509A18008E4669 /* TutorialDetailsView.swift */; };
 		3C53E5962714B93100568F16 /* StyledImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53E5952714B93100568F16 /* StyledImagesListView.swift */; };
 		3C53E5992714B96F00568F16 /* StyledImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53E5982714B96F00568F16 /* StyledImagesViewModel.swift */; };
 		3C7C430D270BFF8B000D0702 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C430C270BFF8B000D0702 /* Feedback.swift */; };
@@ -66,6 +71,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C2EC847275091B8008E4669 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		3C2EC84A275091E1008E4669 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		3C2EC84D2750969C008E4669 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		3C2EC850275097F7008E4669 /* TutorialTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialTabView.swift; sourceTree = "<group>"; };
+		3C2EC85427509A18008E4669 /* TutorialDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailsView.swift; sourceTree = "<group>"; };
 		3C53E5952714B93100568F16 /* StyledImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledImagesListView.swift; sourceTree = "<group>"; };
 		3C53E5982714B96F00568F16 /* StyledImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledImagesViewModel.swift; sourceTree = "<group>"; };
 		3C7C430C270BFF8B000D0702 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
@@ -158,6 +168,17 @@
 				BAF95364BC51CC733311990E /* Pods-fitstyle.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3C2EC84627508EAA008E4669 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				3C2EC84A275091E1008E4669 /* GradientView.swift */,
+				3C2EC84D2750969C008E4669 /* TutorialView.swift */,
+				3C2EC850275097F7008E4669 /* TutorialTabView.swift */,
+				3C2EC85427509A18008E4669 /* TutorialDetailsView.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		3C53E5942714B8F600568F16 /* Styled List */ = {
@@ -272,6 +293,7 @@
 				3CA77C682712ABD800B23D93 /* StyledImage.swift */,
 				3CC1C54027154661008B1BE0 /* Error.swift */,
 				3CC1C54A2716136F008B1BE0 /* Style.swift */,
+				3C2EC847275091B8008E4669 /* Page.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,6 +348,7 @@
 		3CE4866D2702E4E7007BDD06 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				3C2EC84627508EAA008E4669 /* Tutorial */,
 				3CA9DA5A2727CA3C006E0CAE /* Settings */,
 				3C53E5942714B8F600568F16 /* Styled List */,
 				3CA77C602712AB7900B23D93 /* Styled Image */,
@@ -535,8 +558,10 @@
 			files = (
 				3CD0DC04270EB533001E9441 /* LottieView.swift in Sources */,
 				3C7C4326270C1410000D0702 /* AppDelegate.swift in Sources */,
+				3C2EC84E2750969C008E4669 /* TutorialView.swift in Sources */,
 				3CA77C692712ABD800B23D93 /* StyledImage.swift in Sources */,
 				3CA9DA5527276088006E0CAE /* Store.swift in Sources */,
+				3C2EC851275097F7008E4669 /* TutorialTabView.swift in Sources */,
 				3CD0DC15270FC05C001E9441 /* StyleTransferResponse.swift in Sources */,
 				3CCD1674270AB2C500F0ED95 /* StyleListViewModel.swift in Sources */,
 				3C7C4319270C016D000D0702 /* Agent.swift in Sources */,
@@ -547,6 +572,7 @@
 				3C53E5992714B96F00568F16 /* StyledImagesViewModel.swift in Sources */,
 				3CB3278B271C904000CA5F50 /* ErrorView.swift in Sources */,
 				3C85B9722728C8B700E65FB0 /* SettingsViewModel.swift in Sources */,
+				3C2EC848275091B8008E4669 /* Page.swift in Sources */,
 				3CC1C54127154661008B1BE0 /* Error.swift in Sources */,
 				3CA77C5727113FB000B23D93 /* StyleTransferErrorView.swift in Sources */,
 				3CCD167B270AB4E100F0ED95 /* View+Ext.swift in Sources */,
@@ -554,10 +580,12 @@
 				3CC1C54827160796008B1BE0 /* Cache.swift in Sources */,
 				3C7C4311270BFFAC000D0702 /* System.swift in Sources */,
 				3CC1C54E27161872008B1BE0 /* CacheManager.swift in Sources */,
+				3C2EC84B275091E1008E4669 /* GradientView.swift in Sources */,
 				3CC1C561271B829F008B1BE0 /* StyleTransferSettings.swift in Sources */,
 				3CA9DA5C2727CA49006E0CAE /* SettingsView.swift in Sources */,
 				3C85B9752728D5D800E65FB0 /* MailView.swift in Sources */,
 				3CE486562702E465007BDD06 /* FitstyleApp.swift in Sources */,
+				3C2EC85527509A18008E4669 /* TutorialDetailsView.swift in Sources */,
 				3CA77C662712AB9A00B23D93 /* StyledImageViewModel.swift in Sources */,
 				3CC1C564271BCE7E008B1BE0 /* PhotoPicker.swift in Sources */,
 				3CA77C4F2710F0A700B23D93 /* StyleTransferResultResponse.swift in Sources */,

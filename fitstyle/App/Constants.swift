@@ -18,6 +18,7 @@ struct Constants {
         @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
         static let mainAppColor = Color(red: 98/255, green: 0/255, blue: 238/255)
+        static let secondaryAppColor = Color(red: 236/255, green: 110/255, blue: 173/255)
         static let mainTextColor = Color.white
         static let buttonIconSize: CGFloat = 25.0
         static let cornerRadius: CGFloat = 10.0
