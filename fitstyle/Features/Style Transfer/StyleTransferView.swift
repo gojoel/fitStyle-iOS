@@ -107,6 +107,11 @@ struct StyleTransferView: View {
             .frame(minWidth: 0, maxWidth: imageSize)
             .cornerRadius(Constants.Theme.cornerRadius)
             .offset(x: -(halfImageSize / 2), y: -(halfImageSize / 2))
+            .overlay(
+                RoundedRectangle(cornerRadius: Constants.Theme.cornerRadius)
+                    .stroke(Color.white, lineWidth: 4)
+                    .offset(x: -(halfImageSize / 2), y: -(halfImageSize / 2))
+            )
             .eraseToAnyView()
     }
     
@@ -121,6 +126,11 @@ struct StyleTransferView: View {
                 .frame(minWidth: 0, maxWidth: imageSize)
                 .cornerRadius(Constants.Theme.cornerRadius)
                 .offset(x: halfImageSize / 2, y: halfImageSize / 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Constants.Theme.cornerRadius)
+                        .stroke(Color.white, lineWidth: 4)
+                        .offset(x: halfImageSize / 2, y: halfImageSize / 2)
+                )
                 .eraseToAnyView()
         }
         
@@ -135,6 +145,11 @@ struct StyleTransferView: View {
                 .cornerRadius(Constants.Theme.cornerRadius)
                 .shadow(color: Color.primary.opacity(0.3), radius: 1)
                 .offset(x: halfImageSize / 2, y: halfImageSize / 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Constants.Theme.cornerRadius)
+                        .stroke(Color.white, lineWidth: 4)
+                        .offset(x: halfImageSize / 2, y: halfImageSize / 2)
+                )
                 .eraseToAnyView()
         }
         
