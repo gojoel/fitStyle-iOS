@@ -65,6 +65,24 @@ struct SettingsView: View {
                         })
                     }
                 }
+                
+                Section(header: Text("More information")) {
+                    HStack {
+                        Link("Privacy Policy", destination: URL(string: "https://www.foldedai.com/#privacy")!)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: Alignment.leading)
+
+                        Image(systemName: "chevron.right")
+                    }
+                    
+                    HStack {
+                        Link("Credits", destination: URL(string: "https://www.foldedai.com/#credits")!)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: Alignment.leading)
+
+                        Image(systemName: "chevron.right")
+                    }
+                }
             }
         }
         .navigationTitle("Settings")
