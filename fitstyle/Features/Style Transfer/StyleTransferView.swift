@@ -59,7 +59,7 @@ struct StyleTransferView: View {
         }
         
         return content
-            .navigationTitle("Styling")
+            .navigationTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .alert(isPresented: $showWarningAlert) {
@@ -165,7 +165,7 @@ struct StyleTransferView: View {
                     .fontWeight(.bold)
                     .font(.largeTitle)
                 
-                Text("Applying the style to your photo. This will only take a couple of seconds.")
+                Text("Applying the style to your photo.\nThis will only take a few seconds.")
                     .foregroundColor(Constants.Theme.mainTextColor)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)

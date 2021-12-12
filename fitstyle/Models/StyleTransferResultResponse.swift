@@ -8,11 +8,17 @@
 import Foundation
 
 struct StyleTransferResultResponse: Decodable {
-    var status: String
+    var status: StyleTransferStatus
     var requestId: String?
 
     enum CodingKeys: String, CodingKey {
         case status = "status"
         case requestId = "req_id"
+    }
+    
+    enum StyleTransferStatus: String, Decodable {
+        case failed
+        case incomplete
+        case complete
     }
 }

@@ -12,6 +12,8 @@ import PhotosUI
 
 final class StyleTransferViewModel: ObservableObject {
     
+    private let TRANSFER_RETRIES = 10
+
     private let targetSize: CGSize = CGSize(width: 1500, height: 1500)
                 
     let state = PassthroughSubject<State, Never>()
@@ -77,13 +79,36 @@ final class StyleTransferViewModel: ObservableObject {
         }
     }
     
-    private func getStyleTransferResult(jobId: String) {
+    private func getStyleTransferResult(jobId: String, retries: Int = 0) {
+        if retries >= TRANSFER_RETRIES {
+            self.state.send(.failed)
+            return
+        }
+        
         FitstyleAPI.pollStylingStatus(jobId: jobId)
+            .sink { (completion) in
+                self.handleCompletion(completion: completion)
+            } receiveValue: { (response) in
+                if response.status == .failed || (response.status == .complete && response.requestId == nil) {
+                    self.state.send(.failed)
+                } else if (response.status == .incomplete) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                        self.getStyleTransferResult(jobId: jobId, retries: retries + 1)
+                    }
+                } else {
+                    self.imageFromResult(response.requestId!)
+                }
+            }.store(in: &bag)
+    }
+    
+    private func imageFromResult(_ requestId: String) {
+        FitstyleAPI.styledImageFromResult(requestId: requestId)
             .sink { (completion) in
                 self.handleCompletion(completion: completion)
             } receiveValue: { (styledImage) in
                 self.state.send(.complete(styledImage))
             }.store(in: &bag)
+        
     }
     
     private func handleCompletion(completion: Subscribers.Completion<Error>) {

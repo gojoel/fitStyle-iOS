@@ -19,8 +19,6 @@ enum FitstyleAPI {
     private static let baseUrl = URL(string: baseUrlString)!
     private static let agent = Agent()
     private static let cacheManager = CacheManager()
-
-    private static let TRANSFER_RETRIES = 10
     
     static func styles() -> AnyPublisher<[Style], Error> {
         let path = "style_images/"
@@ -137,36 +135,26 @@ enum FitstyleAPI {
         }
     }
     
-    static func pollStylingStatus(jobId: String) -> AnyPublisher<StyledImage, Error> {
+    static func pollStylingStatus(jobId: String) -> AnyPublisher<StyleTransferResultResponse, Error> {
         let request = URLComponents(url: baseUrl.appendingPathComponent("style_transfer/results/\(jobId)"), resolvingAgainstBaseURL: true)?
             .request
         
         return agent.run(request!)
-            .catch({ (error: Error) -> AnyPublisher<StyleTransferResultResponse, Error> in
-                return Fail(error: error)
-                    .delay(for: 5, scheduler: DispatchQueue.main)
-                    .eraseToAnyPublisher()
-            })
-            .retry(TRANSFER_RETRIES)
-            .flatMap({ (response) -> AnyPublisher<StyledImage, Error> in
-                if (response.status == "failed" || response.requestId == nil) {
-                    return Fail(error: FitstyleError.transferFailed)
-                        .eraseToAnyPublisher()
-                }
+            .eraseToAnyPublisher()
+    }
+    
+    static func styledImageFromResult(requestId: String) -> AnyPublisher<StyledImage, Error> {
+        return FitstyleAPI.fetchUserId()
+            .map { (userId) -> StyledImage in
+                let key = Constants.Aws.buildStyledKey(userId: userId, requestId: requestId)
+                let styledImage = StyledImage(key: key, lastUpdated: Date())
                 
-                return FitstyleAPI.fetchUserId()
-                    .map { (userId) -> StyledImage in
-                        let key = Constants.Aws.buildStyledKey(userId: userId, requestId: response.requestId!)
-                        let styledImage = StyledImage(key: key, lastUpdated: Date())
-                        
-                        // save to memory and disk
-                        self.cacheManager.cache(styledImage: styledImage)
-                        self.cacheManager.saveStyledImages()
-                        
-                        return styledImage
-                    }
-                    .eraseToAnyPublisher()
-            })
+                // save to memory and disk
+                self.cacheManager.cache(styledImage: styledImage)
+                self.cacheManager.saveStyledImages()
+                
+                return styledImage
+            }
             .eraseToAnyPublisher()
     }
     
