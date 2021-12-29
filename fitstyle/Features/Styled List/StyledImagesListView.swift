@@ -33,7 +33,11 @@ struct StyledImagesListView: View {
         }) {
             Constants.Theme.backButtonImage
         })
-        .onAppear { self.viewModel.loadStyledImages() }
+        .onAppear {
+            AnalyticsManager.logScreen(screenName: "\(StyledImagesListView.self)", screenClass: "\(StyledImagesListView.self)")
+            
+            self.viewModel.loadStyledImages()
+        }
         
         NavigationLink(
             destination: StyledImageView(viewModel: StyledImageViewModel(),

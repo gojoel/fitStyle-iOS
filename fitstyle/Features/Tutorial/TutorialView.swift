@@ -78,5 +78,8 @@ struct TutorialView: View {
             .padding(.horizontal)
         }
         .transition(.move(edge: .bottom))
+        .onAppear(perform: {
+            AnalyticsManager.logScreen(screenName: "\(TutorialView.self)", screenClass: "\(TutorialView.self)")
+        })
     }
 }

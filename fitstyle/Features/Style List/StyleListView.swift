@@ -56,7 +56,11 @@ struct StyleListView: View {
         .alert(isPresented: $showAccessAlert) {
             Constants.Theme.accessDeniedAlert()
         }
-        .onAppear { self.viewModel.loadStyleImages() }
+        .onAppear {
+            AnalyticsManager.logScreen(screenName: "\(StyleListView.self)", screenClass: "\(StyleListView.self)")
+            
+            self.viewModel.loadStyleImages()
+        }
         
         NavigationLink(
             destination: PhotoSelectionView(viewModel: PhotoSelectionViewModel(), homeViewActive: self.$homeViewActive, styleListActive: self.$isActive),

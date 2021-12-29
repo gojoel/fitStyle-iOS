@@ -91,5 +91,8 @@ struct SettingsView: View {
         .sheet(isPresented: $isShowingMailView) {
             MailView(isShowing: self.$isShowingMailView, result: self.$result)
         }
+        .onAppear(perform: {
+            AnalyticsManager.logScreen(screenName: "\(SettingsView.self)", screenClass: "\(SettingsView.self)")
+        })
     }
 }

@@ -72,6 +72,8 @@ struct StyleTransferView: View {
                 )
             }
             .onAppear {
+                AnalyticsManager.logScreen(screenName: "\(StyleTransferView.self)", screenClass: "\(StyleTransferView.self)")
+                
                 startTransfer()
             }
     }

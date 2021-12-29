@@ -32,22 +32,25 @@ struct PhotoSelectionView: View {
     
     var body: some View {
         content
-        .navigationTitle("Upload a photo")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Constants.Theme.createBackButton(presentation: self.presentationMode))
-        .alert(isPresented: $showAccessAlert) {
-            Constants.Theme.accessDeniedAlert()
-        }
-        .sheet(isPresented: $showPhotoPicker) {
-            let configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-            PhotoPicker(configuration: configuration, isPresented: $showPhotoPicker) { (result) -> () in
-                if let result = result {
-                    self.settings.selectedPhoto = result
-                    self.styleTransferView = StyleTransferView(viewModel: StyleTransferViewModel(), homeViewActive: self.$homeViewActive, styleListActive: self.$styleListActive)
-                    self.photoSelected.toggle()
+            .navigationTitle("Upload a photo")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Constants.Theme.createBackButton(presentation: self.presentationMode))
+            .alert(isPresented: $showAccessAlert) {
+                Constants.Theme.accessDeniedAlert()
+            }
+            .sheet(isPresented: $showPhotoPicker) {
+                let configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+                PhotoPicker(configuration: configuration, isPresented: $showPhotoPicker) { (result) -> () in
+                    if let result = result {
+                        self.settings.selectedPhoto = result
+                        self.styleTransferView = StyleTransferView(viewModel: StyleTransferViewModel(), homeViewActive: self.$homeViewActive, styleListActive: self.$styleListActive)
+                        self.photoSelected.toggle()
+                    }
                 }
             }
-        }
+            .onAppear(perform: {
+                AnalyticsManager.logScreen(screenName: "\(PhotoSelectionView.self)", screenClass: "\(PhotoSelectionView.self)")
+            })
         
         NavigationLink(destination: styleTransferView,
                        isActive: $photoSelected,

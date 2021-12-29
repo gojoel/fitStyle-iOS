@@ -24,6 +24,9 @@ struct HomeView: View {
         NavigationView {
             content
                 .navigationBarHidden(true)
+                .onAppear(perform: {
+                    AnalyticsManager.logScreen(screenName: "\(HomeView.self)", screenClass: "\(HomeView.self)")
+                })
         }
     }
     

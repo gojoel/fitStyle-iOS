@@ -17,8 +17,11 @@ struct StyleTransferErrorView: View {
 
     var body: some View {
         content
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .onAppear(perform: {
+                AnalyticsManager.logScreen(screenName: "\(StyleTransferErrorView.self)", screenClass: "\(StyleTransferErrorView.self)")
+            })
     }
     
     private var content: some View {

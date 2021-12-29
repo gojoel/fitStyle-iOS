@@ -10,7 +10,6 @@ import SwiftUI
 import PhotosUI
 import Kingfisher
 import Combine
-import FirebaseAnalytics
 
 struct StyledImageView: View {
     
@@ -54,6 +53,8 @@ struct StyledImageView: View {
             }
             .navigationTitle("Styled Image")
             .onAppear {
+                AnalyticsManager.logScreen(screenName: "\(StyledImageView.self)", screenClass: "\(StyledImageView.self)")
+                
                 self.viewModel.styledImage = settings.selectedStyledImage
                 self.viewModel.fetchImageUrl()
                 
@@ -146,6 +147,7 @@ struct StyledImageView: View {
 
     var shareButton: some View {
         Button(action: {
+            AnalyticsManager.logShareButtonTapped()
             actionSheet()
         }) {
             HStack() {
@@ -164,7 +166,7 @@ struct StyledImageView: View {
     }
 
     var purchaseButton: some View {
-        Analytics.logEvent("tapped_purchase", parameters: nil)
+        AnalyticsManager.logPurchaseButtonTapped()
         
         return Button(action: {
             if store.shouldFetchProducts() {
