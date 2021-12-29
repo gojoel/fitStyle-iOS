@@ -24,13 +24,15 @@ final class SettingsViewModel: ObservableObject {
                 
                  if let identityProvider = session as? AuthCognitoIdentityProvider {
                     let identityId = try identityProvider.getIdentityId().get()
-                    
+            
                     if let index = identityId.firstIndex(of: ":") {
                         let startIndex = identityId.index(after: index)
                         let substring = identityId.suffix(from: startIndex)
-                        if let endIndex = substring.firstIndex(of: "-") {
+                                                                    
+                        if let endIndex = substring.lastIndex(of: "-") {
                             let range = startIndex..<endIndex
                             let id = substring[range]
+                            
                             DispatchQueue.main.async {
                                 self.userId = String(id)
                             }
