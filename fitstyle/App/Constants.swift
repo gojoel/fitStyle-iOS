@@ -84,7 +84,7 @@ struct Constants {
         static let BUCKET_REQUESTS = "requests/"
         static let STYLED_IMAGE = "styled.jpg"
         private static let DEV_BUCKET = "foldedai-fitstyle-dev"
-        private static let PROD_BUCKET = "foldedai-fitstyle"
+        private static let PROD_BUCKET = "foldedai-fitstyle-prod"
         
         static func buildStyledKey(userId: String, requestId: String) -> String {
             return "\(BUCKET_PRIVATE_PREFIX)\(userId)/\(BUCKET_REQUESTS)\(requestId)/\(STYLED_IMAGE)"
@@ -96,6 +96,7 @@ struct Constants {
     }
     
     static let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    
     static let build: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
     static var isDebug: Bool {
@@ -104,5 +105,13 @@ struct Constants {
         #else
         return false
         #endif
+    }
+    
+    private static let devBaseUrlString = "https://dev.foldedai.com/api"
+    
+    private static let prodBaseUrlString = "https://prod.foldedai.com/api"
+
+    static var baseURL: String {
+        return isDebug ? devBaseUrlString : prodBaseUrlString
     }
 }

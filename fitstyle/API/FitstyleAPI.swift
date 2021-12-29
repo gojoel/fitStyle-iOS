@@ -15,7 +15,7 @@ import AWSS3
 import Kingfisher
 
 enum FitstyleAPI {
-    private static let baseUrlString = "https://foldedai.com/api"
+    private static let baseUrlString = Constants.baseURL
     private static let baseUrl = URL(string: baseUrlString)!
     private static let agent = Agent()
     private static let cacheManager = CacheManager()
