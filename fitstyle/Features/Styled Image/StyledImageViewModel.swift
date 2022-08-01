@@ -64,36 +64,11 @@ final class StyledImageViewModel: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
-    
-    func setImagePurchased() {
-        self.state = .purchasing
-        
-        if let styledImage = styledImage {
-            UserDefaults.standard.setValue(true, forKey: styledImage.requestId())
-            self.styledImage = FitstyleAPI.savePurchasedImage(styledImage)
-            
-            FitstyleAPI.removeWatermark(styledImage: styledImage)
-                .receive(on: DispatchQueue.main)
-                .sink { (completion) in
-                    switch completion {
-                    case .failure(let error):
-                        self.state = .error(error)
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { (_) in
-                    // retrieve new image
-                    self.fetchImageUrl()
-                }
-                .store(in: &bag)
-        }
-    }
 }
 
 extension StyledImageViewModel {
     enum State {
         case loading
-        case purchasing
         case loaded(KFCrossPlatformImage)
         case error(Error)
     }

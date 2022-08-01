@@ -16,19 +16,13 @@ struct StyledImageView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     @EnvironmentObject var settings: StyleTransferSettings
-    
-    @EnvironmentObject private var store: Store
-    
+        
     @StateObject var viewModel: StyledImageViewModel
     
     @Binding var homeViewActive : Bool
     
     @Binding var styleListActive : Bool
-    
-    @State private var showPurchaseErrorAlert = false
-    
-    @State var purchaseError: Error? = nil
-    
+            
     var navSourceStyleTransfer = true
         
     var body: some View {
@@ -43,24 +37,12 @@ struct StyledImageView: View {
             }) {
                 Constants.Theme.backButtonImage
             })
-            .alert(isPresented: $showPurchaseErrorAlert) {
-                let message = self.purchaseError?.localizedDescription ?? ""
-                
-                return Alert(title: Text("Failed to remove watermark."),
-                      message: Text(message),
-                      dismissButton: .cancel(Text("OK"))
-                )
-            }
             .navigationTitle("Styled Image")
             .onAppear {
                 AnalyticsManager.logScreen(screenName: "\(StyledImageView.self)", screenClass: "\(StyledImageView.self)")
                 
                 self.viewModel.styledImage = settings.selectedStyledImage
                 self.viewModel.fetchImageUrl()
-                
-                if let styledImage = self.viewModel.styledImage, !styledImage.purchased, self.store.shouldFetchProducts() {
-                    self.store.fetchProducts { _ in }
-                }
             }
     }
     
@@ -68,8 +50,6 @@ struct StyledImageView: View {
         switch viewModel.state {
         case .loading:
             return loadingView().eraseToAnyView()
-        case .purchasing:
-            return loadingView(purchasing: true).eraseToAnyView()
         case .loaded(let image):
             return imageView(image: image).eraseToAnyView()
         case .error(let error):
@@ -91,10 +71,6 @@ struct StyledImageView: View {
                     .frame(height: 25)
 
                 shareButton
-                
-                if let purchased = viewModel.styledImage?.purchased, !purchased {
-                    purchaseButton
-                }
                 
                 createButton
             }
@@ -132,11 +108,6 @@ struct StyledImageView: View {
                 shareButton
                     .disabled(true)
                 
-                if !purchasing {
-                    purchaseButton
-                        .disabled(true)
-                }
-                
                 createButton
                     .disabled(true)
             }
@@ -158,40 +129,6 @@ struct StyledImageView: View {
                     .frame(width: Constants.Theme.buttonIconSize, height: Constants.Theme.buttonIconSize)
 
                 Text("Share")
-                    .fontWeight(.semibold)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-            }
-        }
-        .buttonStyle(Constants.Theme.StyledButton())
-    }
-
-    var purchaseButton: some View {
-        AnalyticsManager.logPurchaseButtonTapped()
-        
-        return Button(action: {
-            if store.shouldFetchProducts() {
-                purchaseError = Store.StoreError.productRequestFailed
-                return
-            }
-            
-            store.purchaseProduct { (result) in
-                switch result {
-                case .success( _):
-                        viewModel.setImagePurchased()
-                    case .failure(let error):
-                        self.purchaseError = error
-                        self.showPurchaseErrorAlert.toggle()
-                }
-            }
-        }) {
-            HStack() {
-                Image(systemName: "dollarsign.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.white)
-                    .frame(width: Constants.Theme.buttonIconSize, height: Constants.Theme.buttonIconSize)
-
-                Text("Remove Watermark")
                     .fontWeight(.semibold)
                     .frame(minWidth: 0, maxWidth: .infinity)
             }

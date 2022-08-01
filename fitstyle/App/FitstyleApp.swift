@@ -11,9 +11,7 @@ import SwiftUI
 struct FitstyleApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    @StateObject private var store = Store()
-    
+        
     @AppStorage("completed_tutorial") private var completedTutorial = false
         
     var styleTransferSettings = StyleTransferSettings()
@@ -22,7 +20,6 @@ struct FitstyleApp: App {
         WindowGroup {
             if completedTutorial {
                 HomeView()
-                    .environmentObject(store)
                     .environmentObject(styleTransferSettings)
             } else {
                 TutorialView()
