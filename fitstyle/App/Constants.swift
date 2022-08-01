@@ -84,7 +84,7 @@ struct Constants {
         static let BUCKET_REQUESTS = "requests/"
         static let STYLED_IMAGE = "styled.jpg"
         private static let DEV_BUCKET = "foldedai-fitstyle-dev"
-        private static let PROD_BUCKET = "foldedai-fitstyle-prod"
+        private static let PROD_BUCKET = "foldedai-fitstyle"
         
         static func buildStyledKey(userId: String, requestId: String) -> String {
             return "\(BUCKET_PRIVATE_PREFIX)\(userId)/\(BUCKET_REQUESTS)\(requestId)/\(STYLED_IMAGE)"

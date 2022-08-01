@@ -158,6 +158,8 @@
 			children = (
 				DEC01EF7093E385E8A11A4F6 /* awsconfiguration.json */,
 				44B4D2877C0E0CD368458381 /* amplifyconfiguration.json */,
+				3C7C4338270D0C1B000D0702 /* awsconfiguration.json */,
+				3C7C4337270D0C1B000D0702 /* amplifyconfiguration.json */,
 			);
 			name = AmplifyConfig;
 			sourceTree = "<group>";
@@ -324,8 +326,6 @@
 				3CC1C54627160761008B1BE0 /* Data */,
 				3CC1C544271606CB008B1BE0 /* Views */,
 				3CD0DC13270FC04E001E9441 /* Models */,
-				3C7C4337270D0C1B000D0702 /* amplifyconfiguration.json */,
-				3C7C4338270D0C1B000D0702 /* awsconfiguration.json */,
 				3C7C4313270BFFE0000D0702 /* API */,
 				3C7C430B270BFF7C000D0702 /* Feedback */,
 				3CCD1679270AB4C800F0ED95 /* Extensions */,
