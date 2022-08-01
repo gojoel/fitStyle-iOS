@@ -11,10 +11,14 @@ import FirebaseAnalytics
 class AnalyticsManager {
     
     static func logScreen(screenName: String, screenClass: String) {
-        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-            AnalyticsParameterScreenName: screenName,
-            AnalyticsParameterScreenClass: screenClass
-        ])
+        #if DEBUG
+            return
+        #else
+            Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+                AnalyticsParameterScreenName: screenName,
+                AnalyticsParameterScreenClass: screenClass
+            ])
+        #endif
     }
     
     
