@@ -14,6 +14,7 @@
 		3C2EC85527509A18008E4669 /* TutorialDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EC85427509A18008E4669 /* TutorialDetailsView.swift */; };
 		3C53E5962714B93100568F16 /* StyledImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53E5952714B93100568F16 /* StyledImagesListView.swift */; };
 		3C53E5992714B96F00568F16 /* StyledImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53E5982714B96F00568F16 /* StyledImagesViewModel.swift */; };
+		3C6CA60C28989E6000615FFE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CA60B28989E6000615FFE /* UserManager.swift */; };
 		3C7C430D270BFF8B000D0702 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C430C270BFF8B000D0702 /* Feedback.swift */; };
 		3C7C4311270BFFAC000D0702 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C4310270BFFAC000D0702 /* System.swift */; };
 		3C7C4315270C001A000D0702 /* FitstyleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C4314270C001A000D0702 /* FitstyleAPI.swift */; };
@@ -78,6 +79,7 @@
 		3C2EC85427509A18008E4669 /* TutorialDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailsView.swift; sourceTree = "<group>"; };
 		3C53E5952714B93100568F16 /* StyledImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledImagesListView.swift; sourceTree = "<group>"; };
 		3C53E5982714B96F00568F16 /* StyledImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledImagesViewModel.swift; sourceTree = "<group>"; };
+		3C6CA60B28989E6000615FFE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3C7C430C270BFF8B000D0702 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		3C7C4310270BFFAC000D0702 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		3C7C4314270C001A000D0702 /* FitstyleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitstyleAPI.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				3CC1C54727160796008B1BE0 /* Cache.swift */,
 				3CC1C54D27161872008B1BE0 /* CacheManager.swift */,
+				3C6CA60B28989E6000615FFE /* UserManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				3CA77C622712AB8D00B23D93 /* StyledImageView.swift in Sources */,
 				3C7C433E270D16BE000D0702 /* Constants.swift in Sources */,
 				3CD0DC08270ECF4D001E9441 /* StyleTransferView.swift in Sources */,
+				3C6CA60C28989E6000615FFE /* UserManager.swift in Sources */,
 				3C53E5962714B93100568F16 /* StyledImagesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

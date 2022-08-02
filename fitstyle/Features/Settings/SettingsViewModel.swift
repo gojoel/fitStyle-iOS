@@ -40,7 +40,7 @@ final class SettingsViewModel: ObservableObject {
                     }
                  }
             } catch {
-                // TODO: log error
+                AnalyticsManager.logError(error: .user, description: "Error retreiving user id \(error.localizedDescription)")
             }
         }
     }

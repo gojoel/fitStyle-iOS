@@ -49,8 +49,7 @@ class CacheManager {
         do {
             try styledCache.saveToDisk(withName: STYLED_IMAGE_CACHE_NAME)
         } catch {
-            // TODO: log error
-            print("Saving styled images to disk failed with error: \(error)")
+            AnalyticsManager.logError(error: .styled_image, description: "Saving styled images to disk failed with error: \(error)")
         }
     }
     
@@ -59,8 +58,7 @@ class CacheManager {
             let cache: Cache<String, StyledImage> = try Cache.readFromDisk(withName: STYLED_IMAGE_CACHE_NAME)
             self.styledCache = cache
         } catch {
-            // TODO: log error
-            print("Faied to load styled images cache with error: \(error)")
+            AnalyticsManager.logError(error: .styled_image, description: "Faied to load styled images cache with error: \(error)")
             self.styledCache = Cache<String, StyledImage>()
         }
     }
@@ -69,8 +67,7 @@ class CacheManager {
         do {
             try styledCache.removeCachedFile(withName: STYLED_IMAGE_CACHE_NAME)
         } catch {
-            // TODO: log error
-            print("Faied to remove cached file with error: \(error)")
+            AnalyticsManager.logError(error: .styled_image, description: "Faied to remove cached file with error: \(error)")
         }
     }
     

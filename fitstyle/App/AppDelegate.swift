@@ -27,7 +27,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             
             self.authenticateUser()
         } catch {
-            //TODO: log error
+            AnalyticsManager.logError(error: .amplify, description: error.localizedDescription)
         }
         
         return true
@@ -40,11 +40,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 
                  if let identityProvider = session as? AuthCognitoIdentityProvider {
                     let identityId = try identityProvider.getIdentityId().get()
-                    print("Authenticated user: \(identityId)")
+                    UserManager.saveUserId(userId: identityId)
                  }
             } catch {
-                // TODO: log error
-                print("Fetch auth session failed with error - \(error)")
+                AnalyticsManager.logError(error: .user, description: error.localizedDescription)
             }
         }
     }
