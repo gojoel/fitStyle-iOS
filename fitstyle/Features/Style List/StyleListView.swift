@@ -99,6 +99,7 @@ struct StyleListView: View {
                         StyleView(style: style, size: geometry.size.width)
                             .onTapGesture {
                                 self.settings.selectedStyle = style
+                                self.settings.customStylePhoto = nil
                                 self.isActive = true
                         }
                     }
