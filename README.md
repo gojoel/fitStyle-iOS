@@ -20,7 +20,8 @@
   - MVVM Architecture (View - ViewModel - Model): Facilitates separation of concerns and promotes maintainability.
 - [Alamofire](https://github.com/Alamofire/Alamofire): A Swift network library for handling API requests and responses.
 - [Kingfisher](https://github.com/onevcat/Kingfisher): An lightweight Swift library for loading and caching images.
-- [AWS Amplify](https://github.com/aws-amplify/amplify-iOS): An Swift library that facilitates interaction with AWS services. 
+- [AWS Amplify](https://github.com/aws-amplify/amplify-iOS): An Swift library that facilitates interaction with AWS services.
+- [Firebase](https://firebase.google.com): Integrates Firebase Crashlytics and Analytics. 
 
 ## Architecture
 **Fitstyle** adopts the MVVM architecture which consists of the presentation and data layer.
