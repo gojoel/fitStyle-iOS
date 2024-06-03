@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/iOS-15.5-blue" />  
-  <img src="https://img.shields.io/badge/SwiftUI-3-yellow" />
+  <img src="https://img.shields.io/badge/SwiftUI-5.3-yellow" />
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
 </p>
 
@@ -32,7 +32,7 @@
 - The data layer consists of the **Model** which is responsible for managing the application data and contains the business logic. 
 
 ## Requirements
-- iOS 14.0+
+- iOS 15.5+
 - Xcode 12.0+
 - Swift 5.3+
 
